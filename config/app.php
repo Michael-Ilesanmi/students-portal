@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', "Localdev Institute Students' Portal"),
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Lagos',
 
     /*
     |--------------------------------------------------------------------------
@@ -185,4 +185,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'institution_name' => env('INSTITUTION_NAME', 'Localdev Institute'),
+    'institution_short_name' => env('INSTITUTION_SHORT_NAME', 'LI'),
+    'institution_logo' => env('INSTITUTION_LOGO_URL', ''),
+    'institution_motto' => env('INSTITUTION_MOTTO', '')
 ];

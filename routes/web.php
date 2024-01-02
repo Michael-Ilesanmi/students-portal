@@ -1,5 +1,9 @@
 <?php
 
+use App\Livewire\Auth\Login;
+use App\Livewire\Dashboard\Home;
+use App\Livewire\Dashboard\Profile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function (){
+    return redirect('dashboard');
+});
+
+Route::get('/login', Login::class)->name('login');
+Route::middleware(['auth'])->group(function () {
+    Route::group(['prefix' => '/dashboard'], function () {
+        Route::get('', Home::class)->name('dashboard');
+        Route::get('profile', Profile::class)->name('profile');
+        
+        // Logout User
+        Route::get('logout', function () {
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
+            return redirect('/')->info('Bye');
+        });
+    });
 });
